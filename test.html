@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket demo</title>
+    </head>
+    <body>
+        <script>
+            var ws = new WebSocket("ws://127.0.0.1:8765/"),
+                messages = document.createElement('ul');
+                    function test() {
+                    myValue = document.getElementById("myTextArea").value
+                    ws.send(myValue); // this works
+                };
+            ws.onmessage = function (event) {
+                var messages = document.getElementsByTagName('ul')[0],
+                    message = document.createElement('li'),
+                    content = document.createTextNode(event.data);
+                message.appendChild(content);
+                messages.appendChild(message);
+            };
+            document.body.appendChild(messages);
+        </script>
+ <form action="javascript:test()">
+  <textarea id="myTextArea"></textarea>
+  <input type="submit">
+</form>
+    </body>
+</html>
